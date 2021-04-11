@@ -3,12 +3,10 @@ const { Users } = require('../models')
 
 module.exports.list = (req, res) => {
     Tarefas.findAll({
-        include: [
-            {
-                model: Users,
-                as: 'users'
-            }
-        ]
+        where: {
+            userid: 1  // req.body.userid
+        }
+
     })
         .then((result) => {
             return res.json(result)
@@ -19,15 +17,15 @@ module.exports.list = (req, res) => {
 }
 
 
-module.exports.new = (req, res) => {
-    const nome = req.body.nome
-    const sobrenome = req.body.sobrenome
-    const email = req.body.email
-    const password = req.body.password
+module.exports.newtarefa = (req, res) => {
+    const nometarefa = req.body.nometarefa
+    const valor = req.body.valor
+    const local = req.body.local
+    const userid = req.body.userid
 
-    Users.create({ name: nome, sobrenome: sobrenome, email: email, password: password })
+    Tarefas.create({  userid:userid , nome: nometarefa, valor: valor, local: local })
         .then((result) => {
-            res.send({ 'sms': 'User cadastrado com sucesso!' })
+            res.json({ 'sms': 'Tarefa cadastrado com sucesso!' })
         })
         .catch((error) => {
             console.log(error)

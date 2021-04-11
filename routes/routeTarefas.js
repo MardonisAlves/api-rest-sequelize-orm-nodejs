@@ -7,8 +7,8 @@ module.exports =  (app) => {
 
     })
 
-    app.post('/new',  (req, res) => {
-        userController.new(req, res)
+    app.post('/tarefa',  (req, res) => {
+        tarefaController.newtarefa(req, res)
     })
 
     app.put('/update' , (req , res) => {
