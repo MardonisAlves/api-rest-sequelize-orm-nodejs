@@ -1,5 +1,8 @@
 const userController = require('../controllers/userController')
 const { body, validationResult } = require('express-validator');
+const { Users } = require('../models')
+
+
 module.exports = (app) => {
 
     app.get('/list', (req, res) => {
@@ -20,6 +23,18 @@ module.exports = (app) => {
               return res.status(400).json({ errors: errors.array() });
             }
 
+            const em = Users.findOne({ 
+                where: {
+                email:req.body.email
+                }
+            }).then((result) => {
+                if(result.email == req.body.email){
+                return  res.json({'result': 'Email ja existe'})
+                }
+            }).catch((err) => {
+                res.json({'err': err})
+            })
+            
             userController.new(req, res)
         })
 

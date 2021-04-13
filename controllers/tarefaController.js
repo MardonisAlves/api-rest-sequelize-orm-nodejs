@@ -1,11 +1,12 @@
+const { body, param } = require('express-validator')
 const { Tarefas } = require('../models')
 const { Users } = require('../models')
 
 module.exports.list = (req, res) => {
-    const userid = req.body.userid
+  const id = req.params.id
     Tarefas.findAll({
         where: {
-            userid: userid  // req.body.userid
+            userid: id // req.body.userid
         }
 
     })

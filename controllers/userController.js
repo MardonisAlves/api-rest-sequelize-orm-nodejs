@@ -4,9 +4,8 @@ var bcrypt  = require('bcrypt')
 module.exports.list = (req, res) => {
     Users.findAll()
         .then((result) => {
-            const jsonStringFy = JSON.stringify(result)
-            const jsonParse = JSON.parse(jsonStringFy);
-            res.send({ 'list': jsonParse })
+            
+            res.json({ 'list': result })
         })
         .catch((error) => {
             console.log(error)
@@ -15,7 +14,7 @@ module.exports.list = (req, res) => {
 
 
 module.exports.new = (req, res) => {
-    console.log(res)
+    //validar o email se ja existe
     const saltRounds = 10;
     const nome = req.body.nome
     const sobrenome = req.body.sobrenome
