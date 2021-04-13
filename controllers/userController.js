@@ -1,4 +1,5 @@
 const { Users } = require('../models')
+var bcrypt  = require('bcrypt')
 
 module.exports.list = (req, res) => {
     Users.findAll()
@@ -14,17 +15,19 @@ module.exports.list = (req, res) => {
 
 
 module.exports.new = (req, res) => {
+    console.log(res)
+    const saltRounds = 10;
     const nome = req.body.nome
     const sobrenome = req.body.sobrenome
     const email = req.body.email
-    const password = req.body.password
+    const password = bcrypt.hashSync(req.body.password , saltRounds)
 
     Users.create({ name: nome, sobrenome: sobrenome, email: email, password: password })
-        .then((result) => {
+        .then(( result) => {
             res.send({ 'sms': 'User cadastrado com sucesso!' })
         })
-        .catch((error) => {
-            console.log(error)
+        .catch((err) => {
+            res.send({ 'sms': err })
         })
 }
 

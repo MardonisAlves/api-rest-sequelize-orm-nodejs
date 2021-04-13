@@ -2,9 +2,10 @@ const { Tarefas } = require('../models')
 const { Users } = require('../models')
 
 module.exports.list = (req, res) => {
+    const userid = req.body.userid
     Tarefas.findAll({
         where: {
-            userid: 1  // req.body.userid
+            userid: userid  // req.body.userid
         }
 
     })
@@ -34,8 +35,8 @@ module.exports.newtarefa = (req, res) => {
 
 
 module.exports.update = (req, res) => {
-    const email = req.body.email
-    Users.update({ email: email }, {
+    const nome = req.body.nome
+    Users.update({ name: nome}, {
         where: {
             id: 2
         }
