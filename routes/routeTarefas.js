@@ -3,6 +3,11 @@ const { body, validationResult } = require('express-validator');
 
 module.exports =  (app) => {
 
+    app.get('/tarefas',  (req, res) => {
+        tarefaController.listall(req, res )
+
+    })
+
     app.get('/tarefas/:id',  (req, res) => {
         tarefaController.list(req, res )
 
@@ -22,11 +27,11 @@ module.exports =  (app) => {
         tarefaController.newtarefa(req, res)
     })
 
-    app.put('/update' , (req , res) => {
+    app.put('/uptarefa/:id' , (req , res) => {
         tarefaController.update(req , res)
     })
 
-    app.delete('/delete' , (req , res) => {
+    app.delete('/deltarefa/:id' , (req , res) => {
         tarefaController.delete(req , res)
     })
 }

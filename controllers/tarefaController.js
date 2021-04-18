@@ -1,12 +1,22 @@
-const { body, param } = require('express-validator')
+
 const { Tarefas } = require('../models')
-const { Users } = require('../models')
+
+module.exports.listall = (req, res) => {
+    const id = req.params.id
+      Tarefas.findAll()
+          .then((result) => {
+              return res.json(result)
+          })
+          .catch((error) => {
+              console.log(error)
+          })
+  }
 
 module.exports.list = (req, res) => {
   const id = req.params.id
     Tarefas.findAll({
         where: {
-            userid: id // req.body.userid
+            userid: id 
         }
 
     })
@@ -37,7 +47,7 @@ module.exports.newtarefa = (req, res) => {
 
 module.exports.update = (req, res) => {
     const nome = req.body.nome
-    Users.update({ name: nome}, {
+    Tarefas.update({ name: nome}, {
         where: {
             id: 2
         }
@@ -52,14 +62,14 @@ module.exports.update = (req, res) => {
 
 module.exports.delete = (req, res) => {
 
-    const id = req.body.id
+    const id = req.params.id
 
-    Users.destroy({
+    Tarefas.destroy({
         where: {
             id: id
         }
     }).then((result) => {
-        res.send({ users: 'Users deletado com sucesso!' })
+        res.json({ terfa: 'Terefa deletada com sucesso!' })
     }).catch((error) => {
         console.log(error)
     })
