@@ -8,7 +8,7 @@ module.exports = {
       valor: 120,
       local: 'Nubank',
       status: 0,
-      data: '21-05-12',
+      data: '2021-05-12',
       createdAt: new Date(),
       updatedAt: new Date()
     }]);

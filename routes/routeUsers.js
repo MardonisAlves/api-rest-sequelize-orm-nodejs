@@ -1,6 +1,5 @@
 const userController = require('../controllers/userController')
-
-const validarInputs = require('../helpe/inputsValidate')
+const validarUser = require('../helpe/validarUsers')
 
 module.exports = (app) => {
 
@@ -16,24 +15,22 @@ module.exports = (app) => {
         userController.list(req, res)
     })
 
-    app.post(
-        '/new', validarInputs.validate(),
-        (req, res) => {
-            validarInputs.errors(req, res)
+    app.post('/new', validarUser.validate(), (req, res) => {
+            validarUser.errors(req, res)
             userController.new(req, res)
         })
 
     app.put('/upuser/:id',
-        validarInputs.valIde(),
-        validarInputs.validate(),
+        validarUser.valIde(),
+        validarUser.validate(),
         (req, res) => {
-            validarInputs.errors(req, res)
+            validarUser.errors(req, res)
             userController.update(req, res)
         })
 
-    app.delete('/delete/:id', validarInputs.valIde(),
+    app.delete('/delete/:id', validarUser.valIde(),
         (req, res) => {
-            validarInputs.errors(req, res)
+            validarUser.errors(req, res)
             userController.delete(req, res)
         })
 }

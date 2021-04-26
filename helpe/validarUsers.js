@@ -13,6 +13,16 @@ module.exports.validate = () => {
     return validar
 }
 
+module.exports.validarTarefa = () => {
+    const validar = [
+        body('nometarefa').not().isEmpty().withMessage('Qual o nome da tarefa'),
+        body('valor').not().isEmpty().withMessage('Qual valor ?'),
+        body('local').not().isEmpty().withMessage('Informe o local'),
+        body('data').not().isEmpty().withMessage('Data esta vazia'),
+    ]
+    return validar
+}
+
 module.exports.valIde = () => {
 
     const validar = param('id').isInt().withMessage('o id deve ser inteiro')
