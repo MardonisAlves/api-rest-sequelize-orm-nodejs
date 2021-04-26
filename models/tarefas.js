@@ -22,7 +22,10 @@ module.exports = (sequelize, DataTypes) => {
   Tarefas.init({
     nome: DataTypes.STRING,
     valor: DataTypes.DECIMAL,
-    local: DataTypes.STRING
+    local: DataTypes.STRING,
+    data:DataTypes.DATE,
+    status:DataTypes.BOOLEAN
+
   }, {
     sequelize,
     modelName: 'Tarefas',

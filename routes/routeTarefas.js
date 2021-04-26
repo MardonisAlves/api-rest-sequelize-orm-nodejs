@@ -1,6 +1,10 @@
 const  tarefaController  = require('../controllers/tarefaController')
 const { body, validationResult } = require('express-validator');
 
+/*
+    obs : criar help para validar tarefas
+*/
+
 module.exports =  (app) => {
 
     app.get('/tarefas',  (req, res) => {
@@ -14,7 +18,7 @@ module.exports =  (app) => {
     })
 
     app.post('/tarefa',  
-        body('nome').not().isEmpty().withMessage('Qual o nome da tarefa'),
+        body('nometarefa').not().isEmpty().withMessage('Qual o nome da tarefa'),
         body('valor').not().isEmpty().withMessage('Qual valor ?'),
         body('local').not().isEmpty().withMessage('Informe o local'),
         (req, res) => {

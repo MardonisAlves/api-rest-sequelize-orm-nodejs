@@ -34,14 +34,22 @@ module.exports.newtarefa = (req, res) => {
     const valor = req.body.valor
     const local = req.body.local
     const userid = req.body.userid
+    const data = req.body.data
+    const status =req.body.status
 
-    Tarefas.create({  userid:userid , nome: nometarefa, valor: valor, local: local })
-        .then((result) => {
+    console.log(status , data)
+    
+    Tarefas.create(
+        {
+        userid:userid , nome: nometarefa, valor: valor, data: data , status: status ,local: local 
+        }
+        ).then((result) => {
             res.json({ 'sms': 'Tarefa cadastrado com sucesso!' })
         })
         .catch((error) => {
             console.log(error)
         })
+
 }
 
 

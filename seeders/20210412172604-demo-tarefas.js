@@ -3,10 +3,12 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Tarefas', [{
-      userid:2,
+      userid:1,
       nome: 'Pagar enel',
       valor: 120,
       local: 'Nubank',
+      status: 0,
+      data: '21-05-12',
       createdAt: new Date(),
       updatedAt: new Date()
     }]);

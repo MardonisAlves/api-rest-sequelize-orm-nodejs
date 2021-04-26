@@ -1,9 +1,16 @@
 const userController = require('../controllers/userController')
 
-
 const validarInputs = require('../helpe/inputsValidate')
 
 module.exports = (app) => {
+
+    /*
+        obs : criar metodo getUser by Id
+    */
+
+    app.get('/list/:id', (req, res) => {
+        userController.listbyId(req, res)
+    })
 
     app.get('/list', (req, res) => {
         userController.list(req, res)

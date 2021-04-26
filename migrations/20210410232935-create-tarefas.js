@@ -20,11 +20,20 @@ module.exports = {
         type: Sequelize.STRING
       },
       valor: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DOUBLE
       },
       local: {
         type: Sequelize.STRING
       },
+      status: {
+        type: Sequelize.BOOLEAN,
+        defaultValue:0
+      }
+      ,
+      data: {
+        type: Sequelize.DATE
+      }
+      ,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

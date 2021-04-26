@@ -12,6 +12,21 @@ module.exports.list = (req, res) => {
         })
 }
 
+module.exports.listbyId = (req, res) => {
+    const id = req.params.id
+    Users.findAll({
+        where: {
+            id:id
+        }
+    })
+        .then((result) => {
+            res.json({ 'list': result })
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+
 
 module.exports.new = (req, res) => {
     //validar o email se ja existe
