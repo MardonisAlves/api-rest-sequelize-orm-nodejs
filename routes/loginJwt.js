@@ -19,6 +19,7 @@ module.exports.loginRoute = (req, res) => {
                        console.log(err) 
                     }
                     if(result){
+            // criar token
                         const jwtBearerToken = jwt.sign({}, RSA_PRIVATE_KEY, {
                             algorithm: 'RS256',
                             expiresIn: 120,
@@ -34,7 +35,7 @@ module.exports.loginRoute = (req, res) => {
                     }
                 })
 
-                verificarPass()
+                verificarPass
             } else {
                 res.sendStatus(401)
             }

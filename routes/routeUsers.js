@@ -1,5 +1,16 @@
 const userController = require('../controllers/userController')
 const validarUser = require('../helpe/validarUsers')
+const fs = require('fs')
+
+const expressJwt = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
+
+const RSA_PUBLIC_KEY = fs.readFileSync('config/public.key');
+
+const checkIfAuthenticated = expressJwt({
+    secret: RSA_PUBLIC_KEY,
+    algorithms: ['RS256']
+}); 
 
 module.exports = (app) => {
 
@@ -7,7 +18,7 @@ module.exports = (app) => {
         obs : criar metodo getUser by Id
     */
 
-    app.get('/list/:id', (req, res) => {
+    app.get('/list/:id', checkIfAuthenticated, (req, res) => {
         userController.listbyId(req, res)
     })
 
