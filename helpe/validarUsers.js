@@ -1,7 +1,7 @@
 const { body, validationResult, param } = require('express-validator');
 
 
-module.exports.validate = () => {
+module.exports.validate = function () {
 
     const validar = [
         body('email').isEmail().normalizeEmail().withMessage('E-mail esta invalido'),
@@ -12,6 +12,7 @@ module.exports.validate = () => {
 
     return validar
 }
+
 
 module.exports.validarTarefa = () => {
     const validar = [

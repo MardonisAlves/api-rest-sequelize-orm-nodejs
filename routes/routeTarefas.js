@@ -1,9 +1,7 @@
 const tarefaController = require('../controllers/tarefaController')
 const validarTarefas = require('../helpe/validarUsers')
+const  checkIfAuthenticated = require('../routes/checkIfAuth')
 
-/*
-    obs : criar help para validar tarefas
-*/
 
 module.exports = (app) => {
     app.get('/tarefas', (req, res) => {
@@ -11,7 +9,7 @@ module.exports = (app) => {
     })
 
 
-    app.get('/tarefas/:id', (req, res) => {
+    app.get('/tarefas/:id', checkIfAuthenticated.auth(), (req, res) => {
         tarefaController.list(req, res)
     })
 

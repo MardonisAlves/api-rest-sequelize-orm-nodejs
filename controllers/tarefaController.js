@@ -24,7 +24,7 @@ module.exports.list = (req, res) => {
             return res.json(result)
         })
         .catch((error) => {
-            console.log(error)
+            return res.json(error)
         })
 }
 

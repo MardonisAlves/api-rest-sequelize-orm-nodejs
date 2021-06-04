@@ -35,7 +35,9 @@ module.exports.new = (req, res) => {
     const sobrenome = req.body.sobrenome
     const email = req.body.email
     const password = bcrypt.hashSync(req.body.password , saltRounds)
-      
+    
+    console.log(nome)
+    
     verificaEmail.emailUser(req , res)
 
     Users.create({ name: nome, sobrenome: sobrenome, email: email, password: password })
@@ -43,8 +45,9 @@ module.exports.new = (req, res) => {
             res.json({ 'sms': 'User cadastrado com sucesso!' })
         })
         .catch((err) => {
-            res.send({ 'sms': err })
+            res.json({ 'sms': err })
         })
+    
 }
 
 

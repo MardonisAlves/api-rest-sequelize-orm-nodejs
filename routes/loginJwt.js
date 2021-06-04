@@ -22,13 +22,14 @@ module.exports.loginRoute = (req, res) => {
             // criar token
                         const jwtBearerToken = jwt.sign({}, RSA_PRIVATE_KEY, {
                             algorithm: 'RS256',
-                            expiresIn: 120,
                             subject: data.email
                         })
                         res.status(200).json({
                             idToken: jwtBearerToken,
-                            expiresIn: 120,
-                            id: data.id
+                            expiresIn: 15000,
+                            id: data.id,
+                            nome:data.name,
+                            sobrenome:data.sobrenome
                         })
                     }else{
                         res.status(401).json({'password': 'invalida'})

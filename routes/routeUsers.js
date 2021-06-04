@@ -1,33 +1,32 @@
 const userController = require('../controllers/userController')
 const validarUser = require('../helpe/validarUsers')
-const fs = require('fs')
-
-const expressJwt = require('express-jwt');
-const jwksRsa = require('jwks-rsa');
-
-const RSA_PUBLIC_KEY = fs.readFileSync('config/public.key');
-
-const checkIfAuthenticated = expressJwt({
-    secret: RSA_PUBLIC_KEY,
-    algorithms: ['RS256']
-}); 
-
+const checkIfAuthenticated = require('../routes/checkIfAuth')
+const { body, validationResult, param } = require('express-validator');
 module.exports = (app) => {
 
     /*
         obs : criar metodo getUser by Id
     */
 
-    app.get('/list/:id', checkIfAuthenticated, (req, res) => {
+    app.get('/list/:id', checkIfAuthenticated.auth(), (req, res) => {
         userController.listbyId(req, res)
     })
 
     app.get('/list', (req, res) => {
         userController.list(req, res)
     })
-
-    app.post('/new', validarUser.validate(), (req, res) => {
-            validarUser.errors(req, res)
+    /* OBS A VALIDAÇÃO ESTA CAUSANDO E*/
+    app.post('/new',
+        body('email').isEmail().normalizeEmail().withMessage('E-mail esta invalido'),
+        body('password').trim().escape().isLength({ min: 8 }).withMessage('Password deve ter no minimo 8 caracteres'),
+        body('nome').trim().escape().notEmpty().withMessage('Nome é obrigatorio'),
+        body('sobrenome').trim().escape().notEmpty().withMessage('Sobrenome é obrigatório'),
+        (req, res) => {
+            const errors = validationResult(req);
+           
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ list: errors.array() });
+            }
             userController.new(req, res)
         })
 
