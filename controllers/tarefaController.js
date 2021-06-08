@@ -1,4 +1,5 @@
 
+const { param } = require('express-validator')
 const { Tarefas } = require('../models')
 
 module.exports.listall = (req, res) => {
@@ -54,10 +55,11 @@ module.exports.newtarefa = (req, res) => {
 
 
 module.exports.update = (req, res) => {
-    const nome = req.body.nome
-    Tarefas.update({ name: nome}, {
+    const status = req.body.status
+    const id = req.params.id
+    Tarefas.update({ status: status}, {
         where: {
-            id: 2
+            id: id
         }
     }).then((result) => {
         res.send({ user: 'User atualizado com sucesso!' })
