@@ -4,14 +4,20 @@ const { Tarefas } = require('../models')
 
 module.exports.listall = (req, res) => {
     const id = req.params.id
-      Tarefas.findAll()
-          .then((result) => {
+      Tarefas.findAll({
+        where: {
+            userid: id
+        }
+      })
+      .then((result) => {
               return res.json(result)
           })
           .catch((error) => {
               console.log(error)
           })
   }
+
+  
 
 module.exports.list = (req, res) => {
   const id = req.params.id
@@ -31,25 +37,25 @@ module.exports.list = (req, res) => {
 
 
 module.exports.newtarefa = (req, res) => {
-    const nometarefa = req.body.nometarefa
+
+    const nome = req.body.nome
     const valor = req.body.valor
     const local = req.body.local
     const userid = req.body.userid
     const data = req.body.data
-    const status =req.body.status
+    const status =req.body.situacao
+    console.log(req.body.nomeDatarefa)
 
-    console.log(status , data)
-    
     Tarefas.create(
-        {
-        userid:userid , nome: nometarefa, valor: valor, data: data , status: status ,local: local 
-        }
-        ).then((result) => {
+        { userid:userid , nome: nome, valor: valor, data: data , status: status ,local: local})
+        .then((result) => {
             res.json({ 'sms': 'Tarefa cadastrado com sucesso!' })
         })
         .catch((error) => {
             console.log(error)
         })
+        
+        
 
 }
 

@@ -16,7 +16,7 @@ module.exports.validate = function () {
 
 module.exports.validarTarefa = () => {
     const validar = [
-        body('nometarefa').not().isEmpty().withMessage('Qual o nome da tarefa'),
+        body('nome').not().isEmpty().withMessage('Qual o nome da tarefa'),
         body('valor').not().isEmpty().withMessage('Qual valor ?'),
         body('local').not().isEmpty().withMessage('Informe o local'),
         body('data').not().isEmpty().withMessage('Data esta vazia'),
