@@ -4,11 +4,7 @@ const { Tarefas } = require('../models')
 
 module.exports.listall = (req, res) => {
     const id = req.params.id
-      Tarefas.findAll({
-        where: {
-            userid: id
-        }
-      })
+      Tarefas.findAll()
       .then((result) => {
               return res.json(result)
           })
