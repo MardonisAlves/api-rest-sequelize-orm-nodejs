@@ -4,7 +4,7 @@
     "username": "root",
     "password": "jk8yup02@",
     "database": "todolist",
-    "host": "loccalhost",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
