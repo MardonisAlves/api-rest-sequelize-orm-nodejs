@@ -2,20 +2,7 @@
   "production": {
     "host": "postgres://fbnhicgjjdxegf:26b63e12d27730401cab6ddca89fbb979a98aebca892c6d70fcc6d2223323d61@ec2-3-214-136-47.compute-1.amazonaws.com:5432/d6kki66bd8l4cr",
     "dialect": "postgres"
-  },
-  "development": {
-    "username": "root",
-    "password": "jk8yup02@",
-    "database": "todolist",
-    "host": "localhost",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
   }
+ 
   
 }
