@@ -26,7 +26,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       status: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.REAL,
         defaultValue:0
       }
       ,

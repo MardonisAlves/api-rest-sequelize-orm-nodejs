@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     valor: DataTypes.DECIMAL,
     local: DataTypes.STRING,
     data:DataTypes.DATE,
-    status:DataTypes.BOOLEAN
+    status:DataTypes.REAL
 
   }, {
     sequelize,
