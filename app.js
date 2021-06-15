@@ -1,6 +1,5 @@
 var app  = require('./config/server');
 
-
 var port = process.env.PORT;
 
 if(port == null || port == ""){
