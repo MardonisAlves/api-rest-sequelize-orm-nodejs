@@ -13,6 +13,10 @@ module.exports = (app) => {
         tarefaController.list(req, res)
     })
 
+    app.get('/tarefa/:id' ,  checkIfAuthenticated.auth()  ,(req , res) => {
+        tarefaController.listId(req, res)
+    })
+
     app.post('/tarefa', validarTarefas.validarTarefa(), (req, res) => {
         validarTarefas.errors(req, res)
         tarefaController.newtarefa(req, res)

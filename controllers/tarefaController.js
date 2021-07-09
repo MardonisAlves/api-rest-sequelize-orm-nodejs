@@ -31,6 +31,22 @@ module.exports.list = (req, res) => {
         })
 }
 
+module.exports.listId = (req , res) => {
+    const id = req.params.id
+    Tarefas.findAll({
+        where: {
+            id: id 
+        }
+
+    })
+        .then((result) => {
+            return res.json(result)
+        })
+        .catch((error) => {
+            return res.json(error)
+        })
+}
+
 
 module.exports.newtarefa = (req, res) => {
 
