@@ -75,7 +75,11 @@ module.exports.newtarefa = (req, res) => {
 module.exports.update = (req, res) => {
     const status = req.body.status
     const id = req.params.id
-    Tarefas.update({ status: status}, {
+    const nome = req.body.nome
+    const valor = req.body.valor
+    const data = req.body.data
+    const local = req.body.local
+    Tarefas.update({ status: status , nome:nome ,valor:valor , data:data , local:local} {
         where: {
             id: id
         }
