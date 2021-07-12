@@ -79,7 +79,7 @@ module.exports.update = (req, res) => {
     const valor = req.body.valor
     const data = req.body.data
     const local = req.body.local
-    Tarefas.update({ status: status , nome:nome ,valor:valor , data:data , local:local} {
+    Tarefas.update({ status:status , nome:nome ,valor:valor , data:data , local:local},{
         where: {
             id: id
         }
