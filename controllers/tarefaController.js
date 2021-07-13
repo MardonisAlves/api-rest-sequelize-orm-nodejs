@@ -4,46 +4,41 @@ const { Tarefas } = require('../models')
 
 module.exports.listall = (req, res) => {
     const id = req.params.id
-      Tarefas.findAll()
-      .then((result) => {
-              return res.json(result)
-          })
-          .catch((error) => {
-              console.log(error)
-          })
-  }
-
-  
-
-module.exports.list = (req, res) => {
-  const id = req.params.id
-    Tarefas.findAll({
-        where: {
-            userid: id 
-        }
-
-    })
+    Tarefas.findAll()
         .then((result) => {
             return res.json(result)
-        })
-        .catch((error) => {
-            return res.json(error)
+        }).catch((error) => {
+            console.log(error)
         })
 }
 
-module.exports.listId = (req , res) => {
+
+
+module.exports.list = (req, res) => {
     const id = req.params.id
     Tarefas.findAll({
         where: {
-            id: id 
+            userid: id
         }
 
-    })
-        .then((result) => {
-            return res.json(result)
+    }).then((result) => {
+        return res.json(result)
+    }).catch((error) => {
+        return res.json(error)
         })
-        .catch((error) => {
-            return res.json(error)
+}
+
+module.exports.listId = (req, res) => {
+    const id = req.params.id
+    Tarefas.findAll({
+        where: {
+            id: id
+        }
+
+    }).then((result) => {
+        return res.json(result)
+    }).catch((error) => {
+        return res.json(error)
         })
 }
 
@@ -55,19 +50,18 @@ module.exports.newtarefa = (req, res) => {
     const local = req.body.local
     const userid = req.body.userid
     const data = req.body.data
-    const status =req.body.situacao
+    const status = req.body.situacao
     console.log(req.body.nomeDatarefa)
 
     Tarefas.create(
-        { userid:userid , nome: nome, valor: valor, data: data , status: status ,local: local})
-        .then((result) => {
-            res.json({ 'sms': 'Tarefa cadastrado com sucesso!' })
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-        
-        
+        { userid: userid, nome: nome, valor: valor, data: data, status: status, local: local }
+    ).then((result) => {
+        res.json({ 'sms': 'Tarefa cadastrado com sucesso!' })
+    }).catch((error) => {
+        console.log(error)
+    })
+
+
 
 }
 
@@ -79,7 +73,7 @@ module.exports.update = (req, res) => {
     const valor = req.body.valor
     const data = req.body.data
     const local = req.body.local
-    Tarefas.update({ status:status , nome:nome ,valor:valor , data:data , local:local},{
+    Tarefas.update({ status: status, nome: nome, valor: valor, data: data, local: local }, {
         where: {
             id: id
         }
@@ -104,5 +98,17 @@ module.exports.delete = (req, res) => {
         res.json({ terfa: 'Terefa deletada com sucesso!' })
     }).catch((error) => {
         console.log(error)
+    })
+}
+
+module.exports.pendentes = (req, res) => {
+    Tarefas.findAll({
+        where: {
+            status: 0
+        }
+    }).then((result) => {
+        return res.json(result)
+    }).catch((error) => {
+        return res.json(error)
     })
 }

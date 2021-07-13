@@ -31,4 +31,8 @@ module.exports = (app) => {
     app.delete('/deltarefa/:id', (req, res) => {
         tarefaController.delete(req, res)
     })
+
+    app.get('/tarefasPendetes' , (req , res) => {
+        
+    })
 }
