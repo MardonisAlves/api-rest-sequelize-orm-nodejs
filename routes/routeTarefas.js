@@ -33,6 +33,6 @@ module.exports = (app) => {
     })
 
     app.get('/tarefasPendetes' , (req , res) => {
-        
+        tarefaController.pendentes(req,res)
     })
 }
