@@ -102,11 +102,8 @@ module.exports.delete = (req, res) => {
 }
 
 module.exports.pendentes = (req, res) => {
-    Tarefas.count({
-        where: {
-            status: 0
-        }
-    }).then((result) => {
+    Tarefas.count()
+    .then((result) => {
         return res.json(result)
     }).catch((error) => {
         return res.json(error)
