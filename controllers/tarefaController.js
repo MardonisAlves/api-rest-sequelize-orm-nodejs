@@ -121,3 +121,15 @@ module.exports.totallista = (req, res) => {
         return res.json(error)
     })
 }
+
+module.exports.concluidas = (req, res) => {
+    Tarefas.count({
+        where:{
+            status:1
+        }
+    }).then((result) => {
+        return res.json(result)
+    }).catch((error) => {
+        return res.json(error)
+    })
+}

@@ -39,4 +39,8 @@ module.exports = (app) => {
     app.get('/totalTarefas' , (req, res) => {
         tarefaController.totallista(req ,res)
     })
+
+    app.get('/concluidas' , (req, res) => {
+        tarefaController.concluidas(req , res)
+    })
 }
