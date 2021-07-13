@@ -112,3 +112,12 @@ module.exports.pendentes = (req, res) => {
         return res.json(error)
     })
 }
+
+
+module.exports.totallista = (req, res) => {
+    Tarefas.count().then((result) => {
+        return res.json(result)
+    }).catch((error) => {
+        return res.json(error)
+    })
+}

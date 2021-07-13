@@ -35,4 +35,8 @@ module.exports = (app) => {
     app.get('/tarefasPendetes' , (req , res) => {
         tarefaController.pendentes(req,res)
     })
+
+    app.get('/totalTarefas' , (req, res) => {
+        tarefaController.totallista(req ,res)
+    })
 }
