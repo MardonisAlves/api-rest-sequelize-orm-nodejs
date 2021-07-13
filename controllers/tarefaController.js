@@ -102,7 +102,7 @@ module.exports.delete = (req, res) => {
 }
 
 module.exports.pendentes = (req, res) => {
-    Tarefas.findAll({
+    Tarefas.count({
         where: {
             status: 0
         }
