@@ -43,4 +43,8 @@ module.exports = (app) => {
     app.get('/concluidas' , (req, res) => {
         tarefaController.concluidas(req , res)
     })
+
+    app.get('/valortotal' , (req, res) => {
+        tarefaController.valortotal(req, res)
+    })
 }

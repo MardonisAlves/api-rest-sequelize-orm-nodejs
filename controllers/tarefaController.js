@@ -133,3 +133,12 @@ module.exports.concluidas = (req, res) => {
         return res.json(error)
     })
 }
+
+module.exports.valortotal = (req, res) => {
+    Tarefas.sum('valor')
+    .then((result) => {
+        return res.json(result)
+    }).catch((error) => {
+        return res.json(error)
+    })
+}
