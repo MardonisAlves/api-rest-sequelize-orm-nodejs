@@ -142,3 +142,19 @@ module.exports.valortotal = (req, res) => {
         return res.json(error)
     })
 }
+
+module.exports.searchTarefas = (req, res) =>{
+    const nome = req.params.nome
+    Tarefas.findAll({
+        where:{
+            nome:{
+                [Op.like]: `${nome}%`
+            }
+        }
+    })
+    .then((result) => {
+        return res.json(result)
+    }).catch((error) => {
+        return res.json(error)
+    })  
+}

@@ -47,4 +47,8 @@ module.exports = (app) => {
     app.get('/valortotal' , (req, res) => {
         tarefaController.valortotal(req, res)
     })
+
+    app.get('/searchTarefas/:nome') , (req,res) => {
+        tarefaController.searchTarefas(req,res)
+    }
 }
