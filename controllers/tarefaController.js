@@ -1,4 +1,4 @@
-
+const { Op } = require("sequelize");
 const { param } = require('express-validator')
 const { Tarefas } = require('../models')
 
@@ -145,12 +145,13 @@ module.exports.valortotal = (req, res) => {
 
 module.exports.searchTarefas = (req, res) =>{
     const nome = req.params.nome
+    
     Tarefas.findAll({
         where:{
             nome:{
-                [Op.like]: nome
+               [Op.like]:'%' + nome + '%'
             }
-        }
+         }
     })
     .then((result) => {
         return res.json(result)
