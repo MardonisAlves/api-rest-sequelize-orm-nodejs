@@ -3,11 +3,6 @@ const validarUser = require('../helpe/validarUsers')
 const checkIfAuthenticated = require('../routes/checkIfAuth')
 const { body, validationResult, param } = require('express-validator');
 module.exports = (app) => {
-
-    /*
-        obs : criar metodo getUser by Id
-    */
-
     app.get('/list/:id', checkIfAuthenticated.auth(), (req, res) => {
         userController.listbyId(req, res)
     })
@@ -33,12 +28,13 @@ module.exports = (app) => {
     app.put('/upuser/:id',
         validarUser.valIde(),
         validarUser.validate(),
+        checkIfAuthenticated.auth(),
         (req, res) => {
             validarUser.errors(req, res)
             userController.update(req, res)
         })
 
-    app.delete('/delete/:id', validarUser.valIde(),
+    app.delete('/delete/:id',checkIfAuthenticated.auth(), validarUser.valIde(),
         (req, res) => {
             validarUser.errors(req, res)
             userController.delete(req, res)

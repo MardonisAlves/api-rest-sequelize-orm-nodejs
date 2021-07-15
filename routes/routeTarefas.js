@@ -8,7 +8,6 @@ module.exports = (app) => {
         tarefaController.listall(req, res)
     })
 
-
     app.get('/tarefas/:id', checkIfAuthenticated.auth(), (req, res) => {
         tarefaController.list(req, res)
     })
@@ -22,33 +21,31 @@ module.exports = (app) => {
         tarefaController.newtarefa(req, res)
     })
 
-
-    app.put('/uptarefa/:id', (req, res) => {
+    app.put('/uptarefa/:id',  checkIfAuthenticated.auth(), (req, res) => {
         tarefaController.update(req, res)
     })
 
-
-    app.delete('/deltarefa/:id', (req, res) => {
+    app.delete('/deltarefa/:id', checkIfAuthenticated.auth(), (req, res) => {
         tarefaController.delete(req, res)
     })
 
-    app.get('/tarefasPendetes' , (req , res) => {
+    app.get('/tarefasPendetes' ,  checkIfAuthenticated.auth(),(req , res) => {
         tarefaController.pendentes(req,res)
     })
 
-    app.get('/totalTarefas' , (req, res) => {
+    app.get('/totalTarefas' ,  checkIfAuthenticated.auth(), (req, res) => {
         tarefaController.totallista(req ,res)
     })
 
-    app.get('/concluidas' , (req, res) => {
+    app.get('/concluidas' , checkIfAuthenticated.auth(), (req, res) => {
         tarefaController.concluidas(req , res)
     })
 
-    app.get('/valortotal' , (req, res) => {
+    app.get('/valortotal' , checkIfAuthenticated.auth(), (req, res) => {
         tarefaController.valortotal(req, res)
     })
 
-    app.get('/search/:nome' , (req,res) => {
+    app.get('/search/:nome' ,  checkIfAuthenticated.auth(), (req,res) => {
         tarefaController.searchTarefas(req,res)
     })
 }
