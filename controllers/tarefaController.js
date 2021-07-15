@@ -148,7 +148,7 @@ module.exports.searchTarefas = (req, res) =>{
     Tarefas.findAll({
         where:{
             nome:{
-                [Op.like]: `${nome}%`
+                [Op.like]: nome
             }
         }
     })
