@@ -29,13 +29,13 @@ module.exports.loginRoute = (req, res) => {
                             sobrenome:data.sobrenome
                         })
                     }else{
-                        res.status(401).json({'password': 'invalida'})
+                        res.status(401).json({'password': 'senha invalida'})
                     }
                 })
 
                 verificarPass
             } else {
-                res.status(401).json({'email': 'invalido'})
+                res.status(401).json({'email': 'email invalido'})
             }
 
         }).catch(function (err) {
