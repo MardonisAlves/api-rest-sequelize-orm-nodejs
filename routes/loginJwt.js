@@ -15,10 +15,6 @@ module.exports.loginRoute = (req, res) => {
             // validar a senha
             if (data != null) {
                 const verificarPass = bcrypt.compare(req.body.password , data.password,(err , result) => {
-                    if(err){
-                       console.log(err) 
-                       res.json({'senha': 'invalida'})
-                    }
                     if(result){
             // criar token
                         const jwtBearerToken = jwt.sign({}, RSA_PRIVATE_KEY, {
@@ -39,7 +35,7 @@ module.exports.loginRoute = (req, res) => {
 
                 verificarPass
             } else {
-                res.json({'email': 'invalido'})
+                res.status(401).json({'email': 'invalido'})
             }
 
         }).catch(function (err) {
