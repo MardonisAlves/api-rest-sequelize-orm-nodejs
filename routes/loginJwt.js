@@ -17,7 +17,7 @@ module.exports.loginRoute = (req, res) => {
                 const verificarPass = bcrypt.compare(req.body.password , data.password,(err , result) => {
                     if(err){
                        console.log(err) 
-                       res.json({'email': 'invalido'})
+                       res.json({'senha': 'invalida'})
                     }
                     if(result){
             // criar token
