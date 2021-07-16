@@ -39,7 +39,7 @@ module.exports.loginRoute = (req, res) => {
 
                 verificarPass
             } else {
-                res.sendStatus(401)
+                res.json({'email': 'invalido'})
             }
 
         }).catch(function (err) {
