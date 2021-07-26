@@ -1,10 +1,13 @@
 const { Op } = require("sequelize");
 const { param } = require('express-validator')
 const { Tarefas } = require('../models')
+const {Users} = require('../models')
 
 module.exports.listall = (req, res) => {
     const id = req.params.id
-    Tarefas.findAll()
+    Tarefas.findAll({
+      include:{model:Users , as:'users'} 
+    })
         .then((result) => {
             return res.json(result)
         }).catch((error) => {
@@ -87,9 +90,7 @@ module.exports.update = (req, res) => {
 
 
 module.exports.delete = (req, res) => {
-
     const id = req.params.id
-
     Tarefas.destroy({
         where: {
             id: id
@@ -102,9 +103,11 @@ module.exports.delete = (req, res) => {
 }
 
 module.exports.pendentes = (req, res) => {
+    const id = req.params.id
     Tarefas.count({
         where: {
-            status: 0
+            status: 0,
+            id:id
         }
     }).then((result) => {
         return res.json(result)
@@ -115,7 +118,8 @@ module.exports.pendentes = (req, res) => {
 
 
 module.exports.totallista = (req, res) => {
-    Tarefas.count().then((result) => {
+    const id = req.params.id
+    Tarefas.count({where:{id:id}}).then((result) => {
         return res.json(result)
     }).catch((error) => {
         return res.json(error)
@@ -123,9 +127,11 @@ module.exports.totallista = (req, res) => {
 }
 
 module.exports.concluidas = (req, res) => {
+    const id = req.params.id
     Tarefas.count({
         where:{
-            status:1
+            status:1,
+            id:id
         }
     }).then((result) => {
         return res.json(result)
@@ -135,7 +141,8 @@ module.exports.concluidas = (req, res) => {
 }
 
 module.exports.valortotal = (req, res) => {
-    Tarefas.sum('valor')
+    const id = req.params.id
+    Tarefas.sum('valor' , {where: {id:id}})
     .then((result) => {
         return res.json(result)
     }).catch((error) => {

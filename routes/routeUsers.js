@@ -34,7 +34,7 @@ module.exports = (app) => {
             userController.update(req, res)
         })
 
-    app.delete('/delete/:id',checkIfAuthenticated.auth(), validarUser.valIde(),
+    app.delete('/delete/:id', validarUser.valIde(),
         (req, res) => {
             validarUser.errors(req, res)
             userController.delete(req, res)

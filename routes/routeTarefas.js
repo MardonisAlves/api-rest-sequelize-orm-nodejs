@@ -25,23 +25,23 @@ module.exports = (app) => {
         tarefaController.update(req, res)
     })
 
-    app.delete('/deltarefa/:id', checkIfAuthenticated.auth(), (req, res) => {
+    app.delete('/deltarefa/:id',  (req, res) => {
         tarefaController.delete(req, res)
     })
 
-    app.get('/tarefasPendetes' ,  checkIfAuthenticated.auth(),(req , res) => {
+    app.get('/tarefasPendetes/:id' ,  checkIfAuthenticated.auth(),(req , res) => {
         tarefaController.pendentes(req,res)
     })
 
-    app.get('/totalTarefas' ,  checkIfAuthenticated.auth(), (req, res) => {
+    app.get('/totalTarefas/:id' ,  checkIfAuthenticated.auth(), (req, res) => {
         tarefaController.totallista(req ,res)
     })
 
-    app.get('/concluidas' , checkIfAuthenticated.auth(), (req, res) => {
+    app.get('/concluidas/:id' , checkIfAuthenticated.auth(), (req, res) => {
         tarefaController.concluidas(req , res)
     })
 
-    app.get('/valortotal' , checkIfAuthenticated.auth(), (req, res) => {
+    app.get('/valortotal/:id' , checkIfAuthenticated.auth(), (req, res) => {
         tarefaController.valortotal(req, res)
     })
 

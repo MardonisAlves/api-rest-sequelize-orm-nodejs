@@ -8,10 +8,10 @@ module.exports.emailUser= (req ,  res ) => {
         }
     }).then((result) => {
         if (result.email == req.body.email) {
-           return res.json({ 'result': 'Email ja existe' })
+          res.json({ 'result': 'Email ja existe' })
         }
     }).catch((error) => {
-        console.log(error)
+        //console.log(error)
     })
 
     return em

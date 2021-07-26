@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Tarefas', [{
-      userid:1,
+      userid:60,
       nome: 'Pagar enel',
       valor: 120,
       local: 'Nubank',

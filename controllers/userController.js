@@ -1,9 +1,9 @@
 const { Users } = require('../models')
-const  verificaEmail  = require('../helpe/vericarUsers')
-var bcrypt  = require('bcrypt')
+const verificaEmail = require('../helpe/vericarUsers')
+var bcrypt = require('bcrypt')
 
 module.exports.list = (req, res) => {
-    Users.findAll()
+    Users.findAll({})
         .then((result) => {
             res.json({ 'list': result })
         })
@@ -16,15 +16,13 @@ module.exports.listbyId = (req, res) => {
     const id = req.params.id
     Users.findAll({
         where: {
-            id:id
+            id: id
         }
+    }).then((result) => {
+        res.json({ 'list': result })
+    }).catch((error) => {
+        console.log(error)
     })
-        .then((result) => {
-            res.json({ 'list': result })
-        })
-        .catch((error) => {
-            console.log(error)
-        })
 }
 
 
@@ -34,20 +32,21 @@ module.exports.new = (req, res) => {
     const nome = req.body.nome
     const sobrenome = req.body.sobrenome
     const email = req.body.email
-    const password = bcrypt.hashSync(req.body.password , saltRounds)
-    
+    const password = bcrypt.hashSync(req.body.password, saltRounds)
+    const typeuser = req.body.typeuser
     console.log(nome)
-    
-    verificaEmail.emailUser(req , res)
 
-    Users.create({ name: nome, sobrenome: sobrenome, email: email, password: password })
-        .then(( result) => {
+    //verificaEmail.emailUser(req, res)
+
+    Users.create(
+        { name: nome, sobrenome: sobrenome, email: email, password: password ,typeuser:typeuser})
+        .then((result) => {
             res.json({ 'sms': 'User cadastrado com sucesso!' })
         })
         .catch((err) => {
             res.json({ 'sms': err })
         })
-    
+
 }
 
 
@@ -57,7 +56,7 @@ module.exports.update = (req, res) => {
     const nome = req.body.nome
     const sobrenome = req.body.sobrenome
 
-    Users.update({name:nome , sobrenome:sobrenome ,  email: email }, {
+    Users.update({ name: nome, sobrenome: sobrenome, email: email }, {
         where: {
             id: id
         }
@@ -71,9 +70,7 @@ module.exports.update = (req, res) => {
 
 
 module.exports.delete = (req, res) => {
-
     const id = req.params.id
-
     Users.destroy({
         where: {
             id: id

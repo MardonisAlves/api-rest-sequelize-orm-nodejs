@@ -10,20 +10,23 @@
         "rejectUnauthorized": false
       }
     
-  },
+  }
+},
+
   "development": {
     "username": "root",
     "password": "jk8yup02@",
-    "database": "todolist",
+    "database": "listatarefas",
     "host": "localhost",
     "dialect": "mysql"
-  },
+  }
+,
   "test": {
     "username": "root",
-    "password": null,
-    "database": "database_test",
+    "password": "jk8yup02@",
+    "database": "teste",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }
-}
+
