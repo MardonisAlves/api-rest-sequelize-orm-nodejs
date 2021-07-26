@@ -1,4 +1,20 @@
 {
+  
+  "development": {
+    "username": "root",
+    "password": "jk8yup02@",
+    "database": "listatarefas",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+  ,
+  "test": {
+    "username": "root",
+    "password": "jk8yup02@",
+    "database": "teste",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
   "production": {
     "username": "fbnhicgjjdxegf",
     "password": "26b63e12d27730401cab6ddca89fbb979a98aebca892c6d70fcc6d2223323d61",
@@ -11,22 +27,6 @@
       }
     
   }
-},
-
-  "development": {
-    "username": "root",
-    "password": "jk8yup02@",
-    "database": "listatarefas",
-    "host": "localhost",
-    "dialect": "mysql"
-  }
-,
-  "test": {
-    "username": "root",
-    "password": "jk8yup02@",
-    "database": "teste",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
+}
 }
 
