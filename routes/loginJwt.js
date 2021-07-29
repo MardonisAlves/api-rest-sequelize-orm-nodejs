@@ -26,7 +26,8 @@ module.exports.loginRoute = (req, res) => {
                             expiresIn: 15000,
                             id: data.id,
                             nome:data.name,
-                            sobrenome:data.sobrenome
+                            sobrenome:data.sobrenome,
+                            typeuser:data.typeuser
                         })
                     }else{
                         res.status(401).json({'password': 'senha invalida'})
