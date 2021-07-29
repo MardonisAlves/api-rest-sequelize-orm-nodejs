@@ -23,7 +23,7 @@ module.exports.list = (req, res) => {
     const id = req.params.id
     Tarefas.findAll({
         where: {
-            userid: id
+            UserId: id
         }
 
     }).then((result) => {
@@ -109,7 +109,7 @@ module.exports.pendentes = (req, res) => {
     Tarefas.count({
         where: {
             status: 0,
-            id:id
+            UserId:id
         }
     }).then((result) => {
         return res.json(result)
@@ -121,7 +121,7 @@ module.exports.pendentes = (req, res) => {
 
 module.exports.totallista = (req, res) => {
     const id = req.params.id
-    Tarefas.count({where:{id:id}}).then((result) => {
+    Tarefas.count({where:{UserId:id}}).then((result) => {
         return res.json(result)
     }).catch((error) => {
         return res.json(error)
@@ -133,7 +133,7 @@ module.exports.concluidas = (req, res) => {
     Tarefas.count({
         where:{
             status:1,
-            id:id
+            UserId:id
         }
     }).then((result) => {
         return res.json(result)
@@ -144,7 +144,7 @@ module.exports.concluidas = (req, res) => {
 
 module.exports.valortotal = (req, res) => {
     const id = req.params.id
-    Tarefas.sum('valor' , {where: {id:id}})
+    Tarefas.sum('valor' , {where: {UserId:id}})
     .then((result) => {
         return res.json(result)
     }).catch((error) => {
