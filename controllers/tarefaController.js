@@ -6,7 +6,9 @@ const {Users} = require('../models')
 module.exports.listall = (req, res) => {
     const id = req.params.id
     Tarefas.findAll({
-      include:{model:Users , as:'users'} 
+      include:{
+          model:Users
+        } 
     })
         .then((result) => {
             return res.json(result)
@@ -51,13 +53,13 @@ module.exports.newtarefa = (req, res) => {
     const nome = req.body.nome
     const valor = req.body.valor
     const local = req.body.local
-    const userid = req.body.userid
+    const UserId = req.body.UserId
     const data = req.body.data
     const status = req.body.situacao
     console.log(req.body.nomeDatarefa)
 
     Tarefas.create(
-        { userid: userid, nome: nome, valor: valor, data: data, status: status, local: local }
+        { UserId: UserId, nome: nome, valor: valor, data: data, status: status, local: local }
     ).then((result) => {
         res.json({ 'sms': 'Tarefa cadastrado com sucesso!' })
     }).catch((error) => {
